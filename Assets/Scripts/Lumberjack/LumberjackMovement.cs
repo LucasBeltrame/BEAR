@@ -5,8 +5,9 @@ public class LumberjackMovement : MonoBehaviour {
 
     public float speed = 5.0F;
     public float jumpSpeed = 8.0F;
-    private Rigidbody2D body;
+	public GameObject background;
 
+    private Rigidbody2D body;
     private float movex = 0f;
 
 	// Use this for initialization
@@ -19,7 +20,9 @@ public class LumberjackMovement : MonoBehaviour {
     {
         movex = Input.GetAxis("Horizontal");
 
-        movex *= speed;
+		movex *= speed;
         body.velocity = new Vector2(movex, body.velocity.y);
+
+		background.GetComponent<FreeParallax> ().Speed = movex * -1.0f;
     }
 }
