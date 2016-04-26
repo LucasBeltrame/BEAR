@@ -20,11 +20,16 @@ public class Lumberjack : MonoBehaviour {
 	void Start ()
 	{
 		boxCollider = GetComponent<BoxCollider2D> ();
-		rigidbody2D = GetComponent<Rigidbody2D> ();
+		rb2D = GetComponent<Rigidbody2D> ();
+		inverseMoveTime = 1f / moveTime;
+
+		animator = GetComponent<Animator> ();
+		ressources = GameManager.instance.playerRessourcesPoints;
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
+	private void OnTriggerEnter2D (Collider2D other)
+	{
+		if (other.tag == "Ours")
+			GameManager.instance.GameOver ();
 	}
 }
