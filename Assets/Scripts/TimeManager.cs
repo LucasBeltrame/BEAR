@@ -17,6 +17,7 @@ public class TimeManager : MonoBehaviour
     private int noDay;
     private float actualTime = 12.0f;
     private float hoursPassed = 0.0f;
+    private float hourPerDay = 7.0f;
     private  CanvasGroup annonceCanvasGroup;
     // Use this for initialization
     void Start ()
@@ -47,7 +48,7 @@ public class TimeManager : MonoBehaviour
         }
         else
         {
-            annonceCanvasGroup.alpha -= 0.002f;
+            annonceCanvasGroup.alpha -= 0.008f;
             if (annonceCanvasGroup.alpha <= 0)
             {
                 countTime = true;
@@ -70,9 +71,8 @@ public class TimeManager : MonoBehaviour
     string GetActualTimeString()
     {
         actualTime = 12.0f;
-        float displayTime = 12.0f;
 
-        float increment = timeElapsed / (nbMinutesPerDay * SEC_PER_MIN);
+        float increment = timeElapsed * (hourPerDay - nbMinutesPerDay) / (nbMinutesPerDay * SEC_PER_MIN);
         actualTime += increment;
 
         TimeSpan timeSpan = TimeSpan.FromHours(actualTime * nbMinutesPerDay);

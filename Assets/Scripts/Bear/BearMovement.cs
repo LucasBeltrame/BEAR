@@ -10,6 +10,7 @@ public class BearMovement : MonoBehaviour
     public float nbSecondBeforeDirectionChange = 1.0F;
     private Vector2 moveDirection = Vector2.left;
     private float timer = 0;
+    public GameObject background;
 
     private Animator animator;
 
@@ -29,9 +30,12 @@ public class BearMovement : MonoBehaviour
 
         //Movement
 	    defineMoveDirection();
-        moveDirection *= speed;
+
         body.velocity = new Vector2(moveDirection.x,body.velocity.y);
- 
+
+        //Bakground movement
+        background.GetComponent<FreeParallax>().Speed = moveDirection.x * -1.0f;
+
 
     }
 
