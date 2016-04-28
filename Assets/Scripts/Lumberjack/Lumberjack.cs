@@ -24,7 +24,7 @@ public class Lumberjack : MonoBehaviour {
 		inverseMoveTime = 1f / moveTime;
 
 		animator = GetComponent<Animator> ();
-		ressources = GameManager.instance.playerRessourcesPoints;
+		//ressources = GameManager.instance.playerRessourcesPoints;
 	}
 	
 	private void OnTriggerEnter2D (Collider2D other)
