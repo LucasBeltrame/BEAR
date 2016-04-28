@@ -9,6 +9,7 @@ public class LumberjackMovement : MonoBehaviour {
 
     private Rigidbody2D body;
     private float movex = 0f;
+    public  bool moveBackground = true;
 
 	// Use this for initialization
 	void Start () {
@@ -22,7 +23,13 @@ public class LumberjackMovement : MonoBehaviour {
 
 		movex *= speed;
         body.velocity = new Vector2(movex, body.velocity.y);
-
-		background.GetComponent<FreeParallax> ().Speed = movex * -1.0f;
+	    if (moveBackground)
+	    {
+            background.GetComponent<FreeParallax>().Speed = movex * -1.0f;
+        }
+        else
+        {
+            background.GetComponent<FreeParallax>().Speed =0.0f;
+        }
     }
 }

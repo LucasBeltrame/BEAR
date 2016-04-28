@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 
 public class Lumberjack : MonoBehaviour {
@@ -26,10 +27,20 @@ public class Lumberjack : MonoBehaviour {
 		animator = GetComponent<Animator> ();
 		//ressources = GameManager.instance.playerRessourcesPoints;
 	}
-	
-	private void OnTriggerEnter2D (Collider2D other)
-	{
-		if (other.tag == "Ours")
-			GameManager.instance.GameOver ();
-	}
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Rock")
+            this.GetComponent<LumberjackMovement>().moveBackground = false;
+
+
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Rock")
+            this.GetComponent<LumberjackMovement>().moveBackground = true;
+    }
+
+
 }
