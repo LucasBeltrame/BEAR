@@ -14,7 +14,6 @@ public class TimeManager : MonoBehaviour
     private bool countTime = false;
     private float timeElapsed = 0.0f;
     private const float SEC_PER_MIN = 60.0f;
-    private int noDay;
     private float actualTime = 12.0f;
     private float hoursPassed = 0.0f;
     private float hourPerDay = 7.0f;
@@ -23,7 +22,6 @@ public class TimeManager : MonoBehaviour
     void Start ()
 	{
 	    timeElapsed = 0.0f;
-	    noDay = 1;
         annonceCanvasGroup = annonceCanvas.GetComponent<CanvasGroup>();
 
 	}
@@ -38,8 +36,8 @@ public class TimeManager : MonoBehaviour
     {
         if (timeElapsed == 0.0f)
         {
-            dayText.text = "Jour : " + noDay.ToString();
-            AnnonceJourText.text = "Jour " + noDay.ToString();
+            dayText.text = "Jour : " + GameManager.instance.nbDay.ToString();
+            AnnonceJourText.text = "Jour " + GameManager.instance.nbDay.ToString();
         }
 
         if (countTime == true)
@@ -58,13 +56,12 @@ public class TimeManager : MonoBehaviour
 
         if (timeElapsed >= nbMinutesPerDay * SEC_PER_MIN)
         {
-            noDay++;
+            GameManager.instance.nbDay++;
             timeElapsed = 0.0f;
             hoursPassed = 0.0f;
             countTime = false;
             annonceCanvasGroup.alpha = 1.0f;
         }
-
         timeText.text = GetActualTimeString();
     }
 
