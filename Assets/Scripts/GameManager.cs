@@ -33,7 +33,8 @@ public class GameManager : MonoBehaviour {
 		else if (instance != this)
 			Destroy (gameObject);
 
-		DontDestroyOnLoad (gameObject);
+        //pas besoin
+		//DontDestroyOnLoad (gameObject);
 		//boardScript = GetComponent<BoardManager> ();
 		//InitGame ();
 	}
