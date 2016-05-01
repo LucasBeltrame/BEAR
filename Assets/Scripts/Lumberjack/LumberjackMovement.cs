@@ -26,6 +26,7 @@ public class LumberjackMovement : MonoBehaviour {
 
 		movex *= speed;
         body.velocity = new Vector2(movex, body.velocity.y);
+
 	    if (moveBackground)
 	    {
             background.GetComponent<FreeParallax>().Speed = movex * -1.0f;
