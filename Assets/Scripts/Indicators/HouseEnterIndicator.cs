@@ -3,28 +3,23 @@ using System.Collections;
 
 public class HouseEnterIndicator : MonoBehaviour
 {
+    public GameObject indicator;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("Enter ! ");
-           
+            indicator.SetActive(true);
+            GameManager.instance.isNearHouse = true;
         }
-    }
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            Debug.Log("Stay");
-        }  
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("Exit ! ");
+            indicator.SetActive(false);
+            GameManager.instance.isNearHouse = false;
         }
     }
 }

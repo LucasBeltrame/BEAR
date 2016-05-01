@@ -15,8 +15,6 @@ public class BearMovement : MonoBehaviour
     private bool isChasing = false;
 
     private Animator animator;
-    private bool isChasing = false;
-    private Vector2 playerPos = Vector2.zero;
 
     // Use this for initialization
     void Start () {

@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour {
 
 	public static GameManager instance = null;
-	public int playerRessourcesPoints = 0;
+	public int playerRessourcesPoints = 1;
 	public BoardManager boardScript;
     public GameObject GameOverCanvas;
     public GameObject HUD;
@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour {
     public Text FoodText;
     public int nbDay = 1;
     public bool isGameOver = true;
+    public bool isNearHouse = false;
 
     private Color color;
     private float waitTime = 3.0f;
@@ -38,11 +39,7 @@ public class GameManager : MonoBehaviour {
         HUD.SetActive(true);
         isGameOver = false;
         doUpdates = true;
-
-        //pas besoin
-		//DontDestroyOnLoad (gameObject);
-		//boardScript = GetComponent<BoardManager> ();
-		//InitGame ();
+        playerRessourcesPoints = 1;
 	}
 
 	public void GameOver()

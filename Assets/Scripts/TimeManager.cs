@@ -33,6 +33,13 @@ public class TimeManager : MonoBehaviour
 	{
         if (!GameManager.instance.isGameOver)
         {
+            if(GameManager.instance.isNearHouse)
+            {
+                if(Input.GetKeyDown("up"))
+                {
+                    timeElapsed = nbMinutesPerDay * SEC_PER_MIN;
+                }
+            }
             ManageTime();
         }
         else
