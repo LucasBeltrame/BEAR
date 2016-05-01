@@ -11,6 +11,9 @@ public class LumberjackMovement : MonoBehaviour {
     private float movex = 0f;
     public  bool moveBackground = true;
 
+    public Sprite movingSprite;
+    public Sprite idleSprite;
+
 	// Use this for initialization
 	void Start () {
         body = GetComponent<Rigidbody2D>();
@@ -35,10 +38,16 @@ public class LumberjackMovement : MonoBehaviour {
         if(movex > 0)
         {
             this.GetComponent<SpriteRenderer>().flipX = true;
+            this.GetComponent<SpriteRenderer>().sprite = movingSprite;
         }
         else if(movex < 0)
         {
             this.GetComponent<SpriteRenderer>().flipX = false;
+            this.GetComponent<SpriteRenderer>().sprite = movingSprite;
+        }
+        else
+        {
+            this.GetComponent<SpriteRenderer>().sprite = idleSprite;
         }
     }
 }
