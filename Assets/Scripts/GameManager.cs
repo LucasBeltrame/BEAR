@@ -1,7 +1,4 @@
-﻿using System;
-using UnityEngine;
-using System.Collections;
-using System.Threading;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -19,6 +16,10 @@ public class GameManager : MonoBehaviour {
     public bool isGameOver = true;
     public bool isNearHouse = false;
     public GameObject bear;
+
+    public GameObject bearPrefab;
+
+    public GameObject[] bearLocations;
 
     private Color color;
     private float waitTime = 3.0f;
@@ -49,6 +50,16 @@ public class GameManager : MonoBehaviour {
 	    isGameOver = true;
 	    color = deathText.color;
         HUD.SetActive(false);
+    }
+
+    public void BearSpawn()
+    {
+        if(nbDay >= 2)
+        {
+            Destroy(bear);
+            int id = Random.Range(0, bearLocations.Length);
+            bear = (GameObject)Instantiate(bearPrefab, bearLocations[id].transform.position, Quaternion.identity);
+        }
     }
 
     void Update()

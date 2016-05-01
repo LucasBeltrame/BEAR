@@ -86,6 +86,7 @@ public class TimeManager : MonoBehaviour
                 hoursPassed = 0.0f;
                 countTime = false;
                 annonceCanvasGroup.alpha = 1.0f;
+                GameManager.instance.BearSpawn();
             }
 
         }
