@@ -51,7 +51,6 @@ public class GameManager : MonoBehaviour {
         //GameOver
         if (isGameOver)
         {
-
             color.a += 0.009f;
             deathText.color = color;
             ScoreText.color = color;
@@ -76,6 +75,5 @@ public class GameManager : MonoBehaviour {
                 }
             }
         }
-
     }
 }
