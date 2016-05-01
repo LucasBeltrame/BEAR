@@ -39,8 +39,8 @@ public class GameManager : MonoBehaviour {
         isGameOver = false;
         doUpdates = true;
 
-        //DontDestroyOnLoad (gameObject);
-        //DontDestroyOnLoad(HUD);
+        //pas besoin
+		//DontDestroyOnLoad (gameObject);
 		//boardScript = GetComponent<BoardManager> ();
 		//InitGame ();
 	}

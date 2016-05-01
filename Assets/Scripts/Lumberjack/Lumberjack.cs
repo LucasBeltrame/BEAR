@@ -32,8 +32,6 @@ public class Lumberjack : MonoBehaviour {
     {
         if (other.gameObject.tag == "Rock")
             this.GetComponent<LumberjackMovement>().moveBackground = false;
-
-
     }
 
     private void OnCollisionExit2D(Collision2D other)

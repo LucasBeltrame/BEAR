@@ -11,6 +11,9 @@ public class BearMovement : MonoBehaviour
     private Vector2 moveDirection = Vector2.left;
     private float timer = 0;
 
+    private Vector2 playerPos = Vector2.zero;
+    private bool isChasing = false;
+
     private Animator animator;
     private bool isChasing = false;
     private Vector2 playerPos = Vector2.zero;
@@ -23,22 +26,23 @@ public class BearMovement : MonoBehaviour
         animator.SetBool("isWalking",true);
         animator.SetInteger("Direction",direction);
     }
-	
+
 	// Update is called once per frame
 	void Update ()
 	{
         Rigidbody2D body = GetComponent<Rigidbody2D>();
-        if (!isChasing)
-        {
-            timer += Time.deltaTime;
 
-            //Movement
-            defineMoveDirection();
-        }
-        else
-        {
-            chasePlayer();
-        }
+        //Movement
+	    if (isChasing)
+	    {
+	        chasePlayer();
+	    }
+	    else
+	    {
+           timer += Time.deltaTime;
+	       defineMoveDirection();
+	    }
+
 
         body.velocity = new Vector2(moveDirection.x,body.velocity.y);
 
@@ -49,6 +53,7 @@ public class BearMovement : MonoBehaviour
     {
         float posX = this.GetComponent<Transform>().position.x;
         direction = ((playerPos.x - posX) > 0) ? 1 : -1;
+
         moveDirection.x = direction * speed;
     }
 
@@ -71,7 +76,6 @@ public class BearMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("Enter ! ");
             isChasing = true;
             playerPos = other.gameObject.GetComponent<Transform>().position;
         }
@@ -89,7 +93,6 @@ public class BearMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("Exit ! ");
             isChasing = false;
         }
     }

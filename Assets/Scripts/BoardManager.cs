@@ -22,6 +22,7 @@ public class BoardManager : MonoBehaviour {
 	public Count resCount = new Count(3, 7);
 	public GameObject[] logs;
 	public GameObject cabin;
+	public GameObject sign;
 
 	private Transform boardHolder;
 	private List<Vector2> tabPositions = new List<Vector2>();
