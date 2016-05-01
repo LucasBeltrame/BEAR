@@ -12,10 +12,13 @@ public class BearMovement : MonoBehaviour
     private float timer = 0;
 
     private Animator animator;
+    private bool isChasing = false;
+    private Vector2 playerPos = Vector2.zero;
 
     // Use this for initialization
     void Start () {
 
+        isChasing = false;
         animator = GetComponent<Animator>();
         animator.SetBool("isWalking",true);
         animator.SetInteger("Direction",direction);
@@ -24,15 +27,29 @@ public class BearMovement : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-	    timer += Time.deltaTime;
         Rigidbody2D body = GetComponent<Rigidbody2D>();
+        if (!isChasing)
+        {
+            timer += Time.deltaTime;
 
-        //Movement
-	    defineMoveDirection();
+            //Movement
+            defineMoveDirection();
+        }
+        else
+        {
+            chasePlayer();
+        }
 
         body.velocity = new Vector2(moveDirection.x,body.velocity.y);
 
 
+    }
+
+    private void chasePlayer()
+    {
+        float posX = this.GetComponent<Transform>().position.x;
+        direction = ((playerPos.x - posX) > 0) ? 1 : -1;
+        moveDirection.x = direction * speed;
     }
 
     private void defineMoveDirection()
@@ -48,5 +65,32 @@ public class BearMovement : MonoBehaviour
             }
         }
         moveDirection.x = direction*speed;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            Debug.Log("Enter ! ");
+            isChasing = true;
+            playerPos = other.gameObject.GetComponent<Transform>().position;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            playerPos = other.gameObject.GetComponent<Transform>().position;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            Debug.Log("Exit ! ");
+            isChasing = false;
+        }
     }
 }

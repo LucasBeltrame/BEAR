@@ -291,8 +291,7 @@ public class FreeParallaxElement
                     float objWidth = c.WorldToViewportPoint(new Vector3(worldBottom.x + b.size.x, 0, 0)).x;
                     if (objWidth < 1.1f)
                     {
-                        Debug.LogWarning("Game object in element index " + index.ToString() + " did not fit the screen width but was asked to wrap, so it was stretched. This can be fixed " +
-                                         "by making sure any parallax graphics that wrap are at least 1.1x times the largest width resolution you support.");
+                        //Debug.LogWarning("Game object in element index " + index.ToString() + " did not fit the screen width but was asked to wrap, so it was stretched. This can be fixed " + "by making sure any parallax graphics that wrap are at least 1.1x times the largest width resolution you support.");
                         Vector3 scale = obj.transform.localScale;
                         scale.x = (scale.x * (1.0f / objWidth)) + 0.1f;
                         obj.transform.localScale = scale;

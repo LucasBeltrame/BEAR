@@ -10,6 +10,7 @@ public class TimeManager : MonoBehaviour
     public Text timeText;
     public Text AnnonceJourText;
     public Canvas annonceCanvas;
+    public GameObject foodManager;
 
     private bool countTime = false;
     private float timeElapsed = 0.0f;
@@ -23,13 +24,22 @@ public class TimeManager : MonoBehaviour
 	{
 	    timeElapsed = 0.0f;
         annonceCanvasGroup = annonceCanvas.GetComponent<CanvasGroup>();
+        foodManager.GetComponent<FoodsGenerator>().showSomeFoods();
 
-	}
+    }
 	
 	// Update is called once per frame
 	void Update ()
 	{
-	    ManageTime();
+        if (!GameManager.instance.isGameOver)
+        {
+            ManageTime();
+        }
+        else
+        {
+            timeElapsed = 0.0f;
+            countTime = false;
+        }
 	}
 
     void ManageTime()
@@ -56,11 +66,21 @@ public class TimeManager : MonoBehaviour
 
         if (timeElapsed >= nbMinutesPerDay * SEC_PER_MIN)
         {
-            GameManager.instance.nbDay++;
-            timeElapsed = 0.0f;
-            hoursPassed = 0.0f;
-            countTime = false;
-            annonceCanvasGroup.alpha = 1.0f;
+            GameManager.instance.playerRessourcesPoints--;
+            if (GameManager.instance.playerRessourcesPoints < 0)
+            {
+                GameManager.instance.GameOver();
+            }
+            else
+            {
+                GameManager.instance.nbDay++;
+                foodManager.GetComponent<FoodsGenerator>().showSomeFoods();
+                timeElapsed = 0.0f;
+                hoursPassed = 0.0f;
+                countTime = false;
+                annonceCanvasGroup.alpha = 1.0f;
+            }
+
         }
         timeText.text = GetActualTimeString();
     }

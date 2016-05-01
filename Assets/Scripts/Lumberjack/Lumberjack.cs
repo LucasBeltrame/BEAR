@@ -41,6 +41,4 @@ public class Lumberjack : MonoBehaviour {
         if (other.gameObject.tag == "Rock")
             this.GetComponent<LumberjackMovement>().moveBackground = true;
     }
-
-
 }

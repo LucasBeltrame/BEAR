@@ -31,5 +31,14 @@ public class LumberjackMovement : MonoBehaviour {
         {
             background.GetComponent<FreeParallax>().Speed =0.0f;
         }
+
+        if(movex > 0)
+        {
+            this.GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else if(movex < 0)
+        {
+            this.GetComponent<SpriteRenderer>().flipX = false;
+        }
     }
 }
