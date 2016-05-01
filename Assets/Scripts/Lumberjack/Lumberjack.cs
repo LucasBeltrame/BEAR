@@ -6,9 +6,8 @@ public class Lumberjack : MonoBehaviour {
 
 	public float moveTime = 0.5f;
 	public LayerMask blockingLayer;
-	// Temporaire
-	public int pointsPerLogs = 20;
-	public int pointsPerFuel = 5;
+
+    public bool isVisible = true;
 
 	private BoxCollider2D boxCollider;
 	private Rigidbody2D rb2D;
@@ -38,5 +37,10 @@ public class Lumberjack : MonoBehaviour {
     {
         if (other.gameObject.tag == "Rock")
             this.GetComponent<LumberjackMovement>().moveBackground = true;
+    }
+
+    public void changeVisibleStatus()
+    {
+        isVisible = !isVisible;
     }
 }

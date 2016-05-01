@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour {
     public int nbDay = 1;
     public bool isGameOver = true;
     public bool isNearHouse = false;
+    public GameObject bear;
 
     private Color color;
     private float waitTime = 3.0f;

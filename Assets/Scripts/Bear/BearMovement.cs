@@ -41,7 +41,7 @@ public class BearMovement : MonoBehaviour
 	       defineMoveDirection();
 	    }
 
-
+        animator.SetInteger("Direction", direction);
         body.velocity = new Vector2(moveDirection.x,body.velocity.y);
 
 
@@ -74,8 +74,15 @@ public class BearMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            isChasing = true;
-            playerPos = other.gameObject.GetComponent<Transform>().position;
+            if (other.GetComponent<Lumberjack>().isVisible)
+            {
+                isChasing = true;
+                playerPos = other.gameObject.GetComponent<Transform>().position;
+            }
+            else
+            {
+                isChasing = false;
+            }
         }
     }
 
@@ -83,7 +90,16 @@ public class BearMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            playerPos = other.gameObject.GetComponent<Transform>().position;
+            if(other.GetComponent<Lumberjack>().isVisible)
+            {
+                isChasing = true;
+                playerPos = other.gameObject.GetComponent<Transform>().position;
+            }
+            else
+            {
+                isChasing = false;
+            }
+            
         }
     }
 
